@@ -9,22 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BaseController {
+public class EshopController {
 	
-	final private static Logger logger = LoggerFactory.getLogger(BaseController.class);
+	final private static Logger logger = LoggerFactory.getLogger(EshopController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView welcome(ModelAndView mav) {
 		logger.debug("inside welcome funciton");
 		mav.addObject("message", "welcome user");
-		mav.setViewName("index");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	public ModelAndView welcomeName(@PathVariable String name, ModelAndView mav) {
-		logger.debug("inside welcome name function");
-		mav.addObject("message", "welcome " + name);
 		mav.setViewName("index");
 		return mav;
 	}

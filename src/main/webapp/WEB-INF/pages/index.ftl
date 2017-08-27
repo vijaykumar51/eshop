@@ -3,6 +3,6 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-<h2>Message: ${message}</h2>
+<h2>Message: Hello</h2>
 </body>
 </html>
