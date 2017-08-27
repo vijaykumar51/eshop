@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<configuration>
+<configuration debug="true">
 
 	<property name="log_location" value="/home/vijay/DevArea/deployed/dev-server-first/logs" />
 	<property name="log_file_name" value="eshopLogDump" />
@@ -14,24 +14,30 @@
 	</appender>
 	
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${CATALINA_BASE}/eShopLogDump.log</file>
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
-			</Pattern>
-		</encoder>
-
-		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<fileNamePattern>${log_location}/${log_file_name}.old.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+        <file>${log_location}/${log_file_name}.log</file>
+        
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>${log_location}/${log_file_name}.%i.log.zip</FileNamePattern>
             <MinIndex>1</MinIndex>
             <MaxIndex>4</MaxIndex>
-			<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            	<MaxFileSize>4MB</MaxFileSize>
-        	</triggeringPolicy>
-
-		</rollingPolicy>
-
-	</appender>
+        </rollingPolicy>
+        
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>2MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+	
+	
+	<!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>log.txt</file>
+    <encoder>
+      <pattern>%logger{35} - %msg%n</pattern>
+    </encoder>
+  </appender>-->
 
 	<!--<logger name="com.eshop.controller" level="debug"
 		additivity="false">
