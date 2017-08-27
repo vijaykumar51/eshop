@@ -7,6 +7,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>eshop Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <properties>
+  	<server-base>/home/vijay/DevArea/deployed/dev-server-first</server-base>
+  </properties>
+   
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -48,5 +53,44 @@
   
   <build>
     <finalName>eshop</finalName>
+    
+    <plugins>
+    
+       <plugin>
+	    <artifactId>maven-clean-plugin</artifactId>
+	    <version>3.0.0</version>
+	    <executions>
+	    	<execution>
+	    		<id>Cleaning up webapps</id>
+	    		<phase>verify</phase>
+	    		<goals>
+	    			<goal>clean</goal>
+	    		</goals>
+	    	</execution>
+	    </executions>
+	    <configuration>
+	      <filesets>
+	        <fileset>
+	          <directory>${server-base}/webapps</directory>
+	          <includes>
+                <include>**/*</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+	        </fileset>
+	      </filesets>
+	    </configuration>
+	  </plugin>	
+	  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <webappDirectory>${server-base}/webapps/eshop</webappDirectory>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+    
   </build>
 </project>
