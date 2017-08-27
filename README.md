@@ -1,0 +1,2 @@
+# eshop
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b26f1aab8bb948d6a2c93db1d5c6ba06)](https://www.codacy.com/app/vijay.kumar.em51/eshop?utm_source=github.com&utm_medium=referral&utm_content=vijaykumar51/eshop&utm_campaign=badger)
