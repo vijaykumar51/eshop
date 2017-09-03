@@ -3,10 +3,12 @@ package com.eshop.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.eshop.model.UserRegistrationDetails;
 
 @Controller
 public class EshopController {
@@ -19,6 +21,17 @@ public class EshopController {
 		mav.addObject("message", "welcome user");
 		mav.setViewName("index");
 		return mav;
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	public ModelAndView registerUser(ModelAndView mav) {
+		mav.setViewName("register");
+		return mav;
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.POST)
+	public void registerUser(@ModelAttribute UserRegistrationDetails userDetails) {
+		logger.info("userDetails " + userDetails.toString());
 	}
 	
 }
