@@ -13,7 +13,7 @@ import com.eshop.model.UserRegistrationDetails;
 public class UserDetailsImpl implements UserDetailsDao{
 
 	@Autowired
-	MongoOperations mongo;
+	private MongoOperations mongo;
 	
 	@Override
 	public List<UserRegistrationDetails> findUserByName(String name) {

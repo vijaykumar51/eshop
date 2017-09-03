@@ -16,7 +16,7 @@ import com.eshop.model.UserRegistrationDetails;
 public class EshopController {
 	
 	@Autowired
-	MongoOperations mongo;
+	private MongoOperations mongo;
 	
 	final private static Logger logger = LoggerFactory.getLogger(EshopController.class);
 	
