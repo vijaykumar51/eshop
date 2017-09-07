@@ -1,4 +1,4 @@
-package com.eshop.impl;
+package com.eshop.dao;
 
 import java.util.List;
 
@@ -17,13 +17,9 @@ public class UserDetailsImpl implements UserDetailsDao{
 	
 	@Override
 	public List<UserRegistrationDetails> findUserByName(String name) {
-		// TODO Auto-generated method stub
-		
 		Query query = new Query(Criteria.where("name").is(name));
-		
-		mongo.find(query, UserRegistrationDetails.class);
-		
-		return null;
+		List<UserRegistrationDetails> userDetails = mongo.find(query, UserRegistrationDetails.class);
+		return userDetails;
 	}
 
 }
