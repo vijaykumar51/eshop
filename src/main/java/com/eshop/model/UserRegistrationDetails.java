@@ -1,5 +1,8 @@
 package com.eshop.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "UserInfo")
 public class UserRegistrationDetails {
 
 	private String name;

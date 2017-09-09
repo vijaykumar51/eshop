@@ -5,8 +5,10 @@ import com.eshop.model.UserRegistrationDetails;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRegisterationRepo extends MongoRepository<UserRegistrationDetails, String>, UserDetailsDao{
+public interface UserRegistrationRepo extends MongoRepository<UserRegistrationDetails, String>, UserDetailsDao{
 	
 	UserRegistrationDetails findByEmail(String email);
+	
+	UserRegistrationDetails findByName(String name);
 	
 }

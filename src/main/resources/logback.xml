@@ -39,12 +39,12 @@
     </encoder>
   </appender>-->
 
-	<!--<logger name="com.eshop.controller" level="debug"
-		additivity="false">
+	<logger name="com.eshop" level="debug" additivity="false">
 		<appender-ref ref="STDOUT" />
-	</logger>-->
+		<appender-ref ref="FILE" />
+	</logger>
 
-	<root level="debug">
+	<root level="info">
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</root>

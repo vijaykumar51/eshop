@@ -15,11 +15,11 @@ public class UserDetailsImpl implements UserDetailsDao{
 	@Autowired
 	private MongoOperations mongo;
 	
-	@Override
-	public List<UserRegistrationDetails> findUserByName(String name) {
-		Query query = new Query(Criteria.where("name").is(name));
-		List<UserRegistrationDetails> userDetails = mongo.find(query, UserRegistrationDetails.class);
-		return userDetails;
-	}
+//	@Override
+//	public List<UserRegistrationDetails> findUserByName(String name) {
+//		Query query = new Query(Criteria.where("name").is(name));
+//		List<UserRegistrationDetails> userDetails = mongo.find(query, UserRegistrationDetails.class);
+//		return userDetails;
+//	}
 
 }
