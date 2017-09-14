@@ -11,7 +11,9 @@ public class UserCredentialsDetails {
 	@Indexed(unique = true)
 	private String email;
 	
-	private String password;
+	private String encryptedPassword;
+	
+	private String privateKey;
 
 	public String getEmail() {
 		return email;
@@ -21,17 +23,26 @@ public class UserCredentialsDetails {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getEncryptedPassword() {
+		return encryptedPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEncryptedPassword(String encryptedPassword) {
+		this.encryptedPassword = encryptedPassword;
+	}
+
+	public String getPrivateKey() {
+		return privateKey;
+	}
+
+	public void setPrivateKey(String privateKey) {
+		this.privateKey = privateKey;
 	}
 
 	@Override
 	public String toString() {
-		return "UserCredentials [email=" + email + ", password=" + password + "]";
+		return "UserCredentialsDetails [email=" + email + ", encryptedPassword=" + encryptedPassword + ", privateKey="
+				+ privateKey + "]";
 	}
 	
 }

@@ -1,5 +1,11 @@
 package com.eshop.dao;
 
-public class CredentialManagerImpl {
+public class CredentialManagerImpl implements CredentialManagerDao{
 
+	@Override
+	public String encryptPassword(String password) {
+		
+		return password;
+	}
+	
 }

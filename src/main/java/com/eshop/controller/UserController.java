@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.eshop.model.UserCredentialsDetails;
 import com.eshop.model.UserRegistrationDetails;
+import com.eshop.mongoRepo.UserCredentialRepo;
 import com.eshop.mongoRepo.UserRegistrationRepo;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRegistrationRepo userRepo;
+	
+	@Autowired
+	private UserCredentialRepo userCredRepo;
 	
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public ResponseEntity<List<UserRegistrationDetails>> getUsers(){
@@ -37,6 +42,14 @@ public class UserController {
 			return new ResponseEntity<UserRegistrationDetails>(HttpStatus.CONFLICT);
 		} else {
 			UserRegistrationDetails userSavedDetails = userRepo.insert(userDetails);
+			
+			UserCredentialsDetails userCredentials = new UserCredentialsDetails();
+			userCredentials.setEmail(userDetails.getEmail());
+			userCredentials.setEncryptedPassword(userDetails.getPassword());
+			userCredentials.setPrivateKey(userDetails.getPassword());
+			
+			userCredRepo.insert(userCredentials);
+			
 			return new ResponseEntity<UserRegistrationDetails>(userSavedDetails, HttpStatus.CREATED);
 		}
 		

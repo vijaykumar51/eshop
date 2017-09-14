@@ -1,7 +1,7 @@
 package com.eshop.dao;
 
-public class CredentialManagerDao {
+public interface CredentialManagerDao {
 
-	
+	public String encryptPassword(String password);
 	
 }
