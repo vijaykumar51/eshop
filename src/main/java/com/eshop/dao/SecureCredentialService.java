@@ -17,8 +17,8 @@ public class SecureCredentialService {
 	
 	public boolean checkPasswordValidity(String plainTextPassword, String encryptedPassword) {
 		
-		if(null == encryptedPassword || encryptedPassword.startsWith(hashInitials)) {
-			throw new java.lang.IllegalArgumentException("Invalid encrypted password");
+		if(null == encryptedPassword || !encryptedPassword.startsWith(hashInitials)) {
+			throw new java.lang.IllegalArgumentException("Invalid encrypted password hash");
 		}
 		
 		return BCrypt.checkpw(plainTextPassword, encryptedPassword);		
