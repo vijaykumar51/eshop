@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.eshop.dao.SecureCredentialService;
 import com.eshop.model.UserCredentialsDetails;
 import com.eshop.model.UserRegistrationDetails;
 import com.eshop.mongoRepo.UserCredentialRepo;
@@ -29,6 +30,9 @@ public class UserController {
 	@Autowired
 	private UserCredentialRepo userCredRepo;
 	
+	@Autowired
+	private SecureCredentialService credService;
+	
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public ResponseEntity<List<UserRegistrationDetails>> getUsers(){
 		List<UserRegistrationDetails> users = userRepo.findAll();
@@ -42,10 +46,12 @@ public class UserController {
 			return new ResponseEntity<UserRegistrationDetails>(HttpStatus.CONFLICT);
 		} else {
 			UserRegistrationDetails userSavedDetails = userRepo.insert(userDetails);
+
+			String encryptedPassword = credService.encryptPassword(userDetails.getPassword());
 			
 			UserCredentialsDetails userCredentials = new UserCredentialsDetails();
 			userCredentials.setEmail(userDetails.getEmail());
-			userCredentials.setEncryptedPassword(userDetails.getPassword());
+			userCredentials.setEncryptedPassword(encryptedPassword);
 			userCredentials.setPrivateKey(userDetails.getPassword());
 			
 			userCredRepo.insert(userCredentials);
@@ -59,6 +65,7 @@ public class UserController {
 	public ResponseEntity<UserRegistrationDetails> registerUser(@PathVariable String name) {
 		UserRegistrationDetails userDetails = userRepo.findByName(name);
 		logger.info("userDetails = " + userDetails);
+
 		if(userDetails == null) {
 			return new ResponseEntity<UserRegistrationDetails>(HttpStatus.NO_CONTENT);
 		}

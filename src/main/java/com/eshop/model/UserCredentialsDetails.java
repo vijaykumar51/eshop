@@ -22,7 +22,7 @@ public class UserCredentialsDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 	public String getEncryptedPassword() {
 		return encryptedPassword;
 	}
