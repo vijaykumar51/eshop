@@ -1,5 +1,8 @@
 package com.eshop.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.eshop.dao.SecureCredentialService;
+import com.eshop.service.SecureCredentialService;
 import com.eshop.model.UserCredentialsDetails;
 import com.eshop.mongoRepo.UserCredentialRepo;
 
@@ -41,7 +44,7 @@ public class EshopController {
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public ResponseEntity checkLogin(@RequestParam String email, @RequestParam String password) {
+	public ResponseEntity checkLogin(HttpServletResponse response, @RequestParam String email, @RequestParam String password) {
 	
 		boolean userAuthorized = false;
 		
@@ -59,6 +62,8 @@ public class EshopController {
 			return new ResponseEntity(HttpStatus.UNAUTHORIZED);
 		}
 		
+		Cookie cookie = new Cookie("token", "someRandomToken");
+		response.addCookie(cookie);
 		return new ResponseEntity(HttpStatus.ACCEPTED);
 	}
 	

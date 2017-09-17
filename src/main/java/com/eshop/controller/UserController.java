@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eshop.dao.SecureCredentialService;
+import com.eshop.service.SecureCredentialService;
 import com.eshop.model.UserCredentialsDetails;
 import com.eshop.model.UserRegistrationDetails;
 import com.eshop.mongoRepo.UserCredentialRepo;
