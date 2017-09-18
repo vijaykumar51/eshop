@@ -1,4 +1,4 @@
-package com.eshop.controller.seller;
+package com.eshop.controller;
 
 //import org.slf4j.LoggerFactory;
 //import org.slf4j.Logger;
@@ -17,6 +17,12 @@ public class SellerController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView getSellerHome(ModelAndView mav) {
 		mav.setViewName("/seller/seller");
+		return mav;
+	}
+
+	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
+	public ModelAndView getAddProductPage(ModelAndView mav) {
+		mav.setViewName("seller/add-product");
 		return mav;
 	}
 
