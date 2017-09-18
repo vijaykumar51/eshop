@@ -11,18 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/seller")
 public class SellerController {
 
-	//final private static Logger logger = LoggerFactory.getLogger(SellerController.class);
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	// final private static Logger logger =
+	// LoggerFactory.getLogger(SellerController.class);
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView getSellerHome(ModelAndView mav) {
-		mav.setViewName("seller");
+		mav.setViewName("/seller/seller");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView getSellerProfile(ModelAndView mav) {
-		mav.setViewName("seller-profile");
+		mav.setViewName("/seller/seller-profile");
 		return mav;
 	}
-	
+
 }

@@ -13,9 +13,9 @@ public class ProductController {
 
 	final private static Logger logger = LoggerFactory.getLogger(SellerController.class);
 
-	@RequestMapping(value = "add-product", method = RequestMethod.GET)
+	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
 	public ModelAndView getAddProductPage(ModelAndView mav) {
-		mav.setViewName("add-product");
+		mav.setViewName("seller/add-product");
 		return mav;
 	}
 
