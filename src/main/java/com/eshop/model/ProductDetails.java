@@ -13,6 +13,10 @@ public class ProductDetails {
 
 	private String type;
 
+	private String description;
+
+	private int price;
+
 	public String getId() {
 		return id;
 	}
@@ -37,6 +41,26 @@ public class ProductDetails {
 		this.type = type;
 	}
 
-	// private Map<String, ProductCharacteristics> productVariants;
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductDetails [id=" + id + ", name=" + name + ", type=" + type + ", description=" + description
+				+ ", price=" + price + "]";
+	}
 
 }

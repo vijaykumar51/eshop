@@ -23,9 +23,10 @@ public class ProductController {
 	@Autowired
 	ProductRepo productRepo;
 
-	@RequestMapping(value = "/product", method = RequestMethod.POST)
+	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public ResponseEntity<ProductDetails> addNewProduct(@ModelAttribute ProductDetails productDetails) {
-		logger.info("product form details = " + productDetails);
+		logger.info("product form details = " + productDetails.toString());
+		productDetails.setId(createProductId(productDetails.getName()));
 		ProductDetails insertedProduct = productRepo.insert(productDetails);
 		logger.info("product inserted details = " + insertedProduct);
 		return new ResponseEntity<ProductDetails>(insertedProduct, HttpStatus.CREATED);
@@ -37,6 +38,14 @@ public class ProductController {
 		logger.info("all products = " + products);
 
 		return new ResponseEntity<List<ProductDetails>>(products, HttpStatus.ACCEPTED);
+	}
+
+	private String createProductId(String productName) {
+
+		String sanitizedName = productName.replaceAll("[^A-Za-z0-9]", "-");
+		sanitizedName = sanitizedName.replaceAll("[-]+", "-");
+
+		return sanitizedName + "-" + System.currentTimeMillis();
 	}
 
 }

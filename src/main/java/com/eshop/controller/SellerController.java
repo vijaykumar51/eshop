@@ -20,13 +20,13 @@ public class SellerController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
+	@RequestMapping(value = "add-product", method = RequestMethod.GET)
 	public ModelAndView getAddProductPage(ModelAndView mav) {
 		mav.setViewName("seller/add-product");
 		return mav;
 	}
 
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public ModelAndView getSellerProfile(ModelAndView mav) {
 		mav.setViewName("/seller/seller-profile");
 		return mav;
